@@ -1,0 +1,160 @@
+.join-screen {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.join-screen form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 280px;
+}
+
+.join-screen input,
+.composer input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border, #ccc);
+  font-size: 14px;
+}
+
+.join-screen .hint {
+  font-size: 12px;
+  opacity: 0.7;
+  margin: -4px 0 0;
+}
+
+.join-screen button,
+.composer button {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.chat-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.chat-screen header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border, #ccc);
+}
+
+.chat-screen header > span {
+  flex: 1;
+}
+
+.avatar-upload-button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border, #ccc);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.avatar-error {
+  padding: 0 16px;
+  color: #dc2626;
+  font-size: 12px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4f46e5;
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  align-self: flex-start;
+  max-width: 70%;
+}
+
+.message-row.own {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  background: #f1f1f1;
+  border-radius: 10px;
+  padding: 8px 12px;
+  min-width: 0;
+}
+
+.message.own {
+  background: #dbeafe;
+}
+
+.message .meta {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.trip-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #065f46;
+  color: #d1fae5;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  user-select: all;
+}
+
+header .trip-badge {
+  font-size: 11px;
+}
+
+.composer {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid var(--border, #ccc);
+}
+
+.composer input {
+  flex: 1;
+}
