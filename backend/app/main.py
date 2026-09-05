@@ -14,6 +14,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import select
 
 from app.avatars import AVATARS_DIR, avatar_url_for, save_avatar
+from app.config import settings
 from app.database import Base, engine, get_db
 from app.connection_manager import manager
 from app.models import Message
@@ -28,11 +29,16 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="ChatApp")
 
+# trycloudflare.com全体のような、自分のもの以外も含む広いオリジンを
+# 許可しない。Cookie等の認証情報も使っていないので allow_credentials も不要。
+_allowed_origins = ["http://localhost:5173", "http://localhost:5174"]
+if settings.cors_extra_origin:
+    _allowed_origins.append(settings.cors_extra_origin)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
-    allow_origin_regex=r"https://.*\.trycloudflare\.com",
-    allow_credentials=True,
+    allow_origins=_allowed_origins,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -91,7 +97,9 @@ async def websocket_endpoint(websocket: WebSocket):
 
         while True:
             data = await websocket.receive_json()
-            content = data.get("content", "")
+            content = data.get("content", "")[:2000]
+            if not content:
+                continue
 
             db = next(get_db())
             message = Message(
